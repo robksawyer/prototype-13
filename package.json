@@ -13,6 +13,7 @@
     "convert": "npx @react-three/gltfjsx -t "
   },
   "dependencies": {
+    "@react-hook/mouse-position": "^4.1.0",
     "@react-three/drei": "^2.2.7",
     "@react-three/postprocessing": "^1.4.1",
     "d3-ease": "^2.0.0",
