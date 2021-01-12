@@ -1,0 +1,42 @@
+/**
+ * VH and VW units can cause issues on iOS devices: http://caniuse.com/#feat=viewport-units
+ *
+ * To overcome this, create media queries that target the width, height, and orientation of iOS devices.
+ * It isn't optimal, but there is really no other way to solve the problem. In this example, I am fixing
+ * the height of element `.h-screen-ios` —which is a full width and height cover image.
+ *
+ * iOS Resolution Quick Reference: http://www.iosres.com/
+ * Viewport units: vw, vh, vmin, vmax: https://caniuse.com/viewport-units
+ */
+ .h-screen-ios {
+  height: 100vh;
+  min-height: 568px;
+}
+
+/**
+* iPad with portrait orientation.
+*/
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+  .h-screen-ios {
+    height: 1024px;
+  }
+}
+
+/**
+* iPad with landscape orientation.
+*/
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+  .h-screen-ios {
+    height: 768px;
+  }
+}
+
+/**
+* iPhone 5
+* You can also target devices with aspect ratio.
+*/
+@media screen and (device-aspect-ratio: 40/71) {
+  .h-screen-ios {
+    height: 500px;
+  }
+}

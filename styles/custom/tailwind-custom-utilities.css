@@ -1,0 +1,232 @@
+/**
+ * Extending Tailwind with custom utilities
+ * Includes: Aspect Ratio, Blur, Gradient BG, Image BG, Text Stroke
+ */
+
+/* Creates responsive classes for each custom utlity */
+/* Creates hover, focus, active pseudo classes for each custom utlity */
+@responsive {
+  @variants hover, focus, active {
+    /* Debugging */
+    .debug {
+      border: 1px solid yellow;
+      background-color: rgba(255,255,0,0.5);
+    }
+
+    .debug-border {
+      border: 1px solid yellow;
+    }
+
+    .debug-bg {
+      background-color: rgba(255,255,0,0.5);
+    }
+
+    /* For the circle loader */
+    .loader-border-accent0 {
+      border-bottom-color: theme('colors.accent0');
+      border-top-color: transparent;
+      border-right-color: theme('colors.accent0');
+      border-left-color: theme('colors.accent0');
+    }
+
+    .loader-border-accent1 {
+      border-bottom-color: theme('colors.accent1');
+      border-top-color: transparent;
+      border-right-color: theme('colors.accent1');
+      border-left-color: theme('colors.accent1');
+    }
+
+    /**
+    * Disable text selection and highlighting
+    * @see https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting
+    */
+    .noselect {
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+          -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome, Edge, Opera and Firefox */
+    }
+
+    /**
+    * Disable the scrollbars
+    */
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .noscroll::-webkit-scrollbar {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      display: none;
+      overflow: hidden;
+    }
+    .noscroll {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      overflow: hidden;
+    }
+
+    /* Text Shadows */
+    .text-shadow {
+      text-shadow: 0 2px 4px rgba(0,0,0,0.10);
+    }
+
+    .text-shadow-md {
+      text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+    }
+
+    .text-shadow-lg {
+      text-shadow: 0 15px 30px rgba(0,0,0,0.11), 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .text-shadow-none {
+      text-shadow: none;
+    }
+
+    .text-extrude-sm {
+      color: #8ee8f8;
+      text-shadow: 1px 1px 1px #69c3d3,
+          1px 2px 1px #69c3d3,
+          1px 3px 1px #69c3d3,
+          1px 4px 1px #69c3d3,
+      1px 6px 6px rgba(16,16,16,0.4),
+      1px 7px 10px rgba(16,16,16,0.2),
+      1px 10px 35px rgba(16,16,16,0.2),
+      1px 15px 60px rgba(16,16,16,0.4);
+    }
+
+    .text-extrude-md {
+      color: #8ee8f8;
+      text-shadow: 1px 1px 1px #69c3d3,
+          1px 2px 1px #69c3d3,
+          1px 3px 1px #69c3d3,
+          1px 4px 1px #69c3d3,
+          1px 5px 1px #69c3d3,
+          1px 6px 1px #69c3d3,
+          1px 7px 1px #69c3d3,
+      1px 10px 6px rgba(16,16,16,0.4),
+      1px 12px 10px rgba(16,16,16,0.2),
+      1px 15px 35px rgba(16,16,16,0.2),
+      1px 20px 60px rgba(16,16,16,0.4);
+    }
+
+    .text-extrude-lg {
+      color: #8ee8f8;
+      text-shadow: 1px 1px 1px #69c3d3,
+          1px 2px 1px #69c3d3,
+          1px 3px 1px #69c3d3,
+          1px 4px 1px #69c3d3,
+          1px 5px 1px #69c3d3,
+          1px 6px 1px #69c3d3,
+          1px 7px 1px #69c3d3,
+          1px 8px 1px #69c3d3,
+          1px 9px 1px #69c3d3,
+          1px 10px 1px #69c3d3,
+      1px 18px 6px rgba(16,16,16,0.4),
+      1px 22px 10px rgba(16,16,16,0.2),
+      1px 25px 35px rgba(16,16,16,0.2),
+      1px 30px 60px rgba(16,16,16,0.4);
+    }
+
+    /* Aspect Ratio */
+    .aspect-ratio-1x1::after {
+      clear: both;
+      content: "";
+      display: table;
+    }
+    .aspect-ratio-1x1::before {
+      content: "";
+        float: left;
+        height: 0;
+        margin-left: -1px;
+        padding-top: 100%;
+        width: -1px;
+    }
+
+    /* To Reset Aspect Ratio */
+    .aspect-ratio-auto {
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        display: none;
+      }
+    }
+
+    /* Blur */
+    .blur-2 {
+      filter: blur(2px);
+    }
+
+    .blur-4 {
+      filter: blur(4px);
+    }
+
+    .blur-5 {
+      filter: blur(5px);
+    }
+
+    .blur-6 {
+      filter: blur(6px);
+    }
+
+    .blur-7 {
+      filter: blur(7px);
+    }
+
+    .blur-8 {
+      filter: blur(8px);
+    }
+
+
+    .text-stroke-color-white {
+      -webkit-text-stroke-color: theme('colors.white');
+      text-stroke-color: theme('colors.white');
+    }
+
+    .text-stroke-color-black {
+      -webkit-text-stroke-color: theme('colors.black');
+      text-stroke-color: theme('colors.black');
+    }
+
+    .text-stroke-width-1 {
+      -webkit-text-stroke-width: 1px;
+      text-stroke-width: 1px;
+    }
+
+    .text-stroke-width-1-5 {
+      -webkit-text-stroke-width: 1.5px;
+      text-stroke-width: 1, 5px;
+    }
+
+    .text-stroke-width-2 {
+      -webkit-text-stroke-width: 2px;
+      text-stroke-width: 2px;
+    }
+
+    .text-stroke-width-2-5 {
+      -webkit-text-stroke-width: 2.5px;
+      text-stroke-width: 2.5px;
+    }
+
+    .text-stroke-width-3 {
+      -webkit-text-stroke-width: 3px;
+      text-stroke-width: 3px;
+    }
+
+    .text-stroke-width-4 {
+      -webkit-text-stroke-width: 4px;
+      text-stroke-width: 4px;
+    }
+
+    .text-stroke-width-6 {
+      -webkit-text-stroke-width: 6px;
+      text-stroke-width: 6px;
+    }
+
+    .text-stroke-width-8 {
+      -webkit-text-stroke-width: 8px;
+      text-stroke-width: 8px;
+    }
+  }
+}
