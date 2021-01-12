@@ -53,9 +53,15 @@ const createParticles = (mouse) => {
  * @return void
  */
 const loop = (particles, mouse) => (ctx) => {
-  console.log('particles', particles)
-  console.log('mouse', mouse)
-  const { x, y, clientX, clientY, screenX, screenY, isDown } = mouse
+  let { x, y, clientX, clientY, screenX, screenY, isDown } = mouse
+  if (!clientX || !clientY) {
+    x = window.innerWidth - SCREEN_WIDTH * 0.5
+    y = window.innerHeight - SCREEN_HEIGHT * 0.5
+  } else {
+    x = clientX - (window.innerWidth - SCREEN_WIDTH) * 0.5
+    y = clientY - (window.innerHeight - SCREEN_HEIGHT) * 0.5
+  }
+
   if (isDown) {
     RADIUS_SCALE += (RADIUS_SCALE_MAX - RADIUS_SCALE) * 0.02
   } else {
@@ -129,22 +135,22 @@ const SpinningLoader = (props) => {
   const container = useRef()
 
   const mouse = useMouse(container, {
-    enterDelay: 10,
-    leaveDelay: 10,
+    enterDelay: 100,
+    leaveDelay: 100,
   })
 
   // Event handler utilizing useCallback ...
   // ... so that reference never changes.
-  const mouseMoveHandler = useCallback(
-    ({ clientX, clientY }) => {
-      // setMouse({
-      //   isDown: mouseDetails.isDown,
-      //   x: clientX - (window.innerWidth - SCREEN_WIDTH) * 0.5,
-      //   y: clientY - (window.innerHeight - SCREEN_HEIGHT) * 0.5,
-      // })
-    },
-    [mouse]
-  )
+  // const mouseMoveHandler = useCallback(
+  //   ({ clientX, clientY }) => {
+  //     // setMouse({
+  //     //   isDown: mouseDetails.isDown,
+  //     //   x: clientX - (window.innerWidth - SCREEN_WIDTH) * 0.5,
+  //     //   y: clientY - (window.innerHeight - SCREEN_HEIGHT) * 0.5,
+  //     // })
+  //   },
+  //   [mouse]
+  // )
 
   const touchStartHandler = useCallback(({ touches, preventDefault }) => {
     if (touches.length == 1) {
