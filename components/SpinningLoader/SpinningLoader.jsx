@@ -38,7 +38,7 @@ const createParticles = (mouse) => {
       shift: { x, y },
       speed: 0.01 + Math.random() * 0.04,
       targetSize: 1,
-      fillColor: '#' + ((Math.random() * 0x404040 + 0xaaaaaa) | 0).toString(16),
+      fillColor: '#' + ((Math.random() * 0x19e68c + 0xf59b23) | 0).toString(16),
       orbit: RADIUS * 0.5 + RADIUS * 0.5 * Math.random(),
     }
 
@@ -152,6 +152,7 @@ const SpinningLoader = (props) => {
   //   [mouse]
   // )
 
+  // TODO: Maybe add these later.
   const touchStartHandler = useCallback(({ touches, preventDefault }) => {
     if (touches.length == 1) {
       preventDefault()
