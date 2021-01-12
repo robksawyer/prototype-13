@@ -2,7 +2,7 @@
  * @file SpinningLoader.js
  * @see
  */
-import React, { useEffect, useCallback, useRef, useState } from 'react'
+import React, { useEffect, useCallback, useRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import useMouse from '@react-hook/mouse-position'
 
@@ -128,8 +128,6 @@ const SpinningLoader = (props) => {
   const { tagName: Tag, className, variant, children } = props
   const container = useRef()
 
-  let particles = []
-
   const mouse = useMouse(container, {
     enterDelay: 10,
     leaveDelay: 10,
@@ -195,7 +193,7 @@ const SpinningLoader = (props) => {
     // console.log('particles', particles)
   }, [])
 
-  particles = createParticles(mouse)
+  const particles = useMemo(() => createParticles(mouse), [])
 
   const canvasRef = useCanvas(loop(particles, mouse))
 
