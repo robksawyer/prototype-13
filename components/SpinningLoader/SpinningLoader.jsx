@@ -1,6 +1,7 @@
 /**
  * @file SpinningLoader.js
- * @see
+ * @see https://codepen.io/hakimel/pen/KanIi?editors=0010
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode
  */
 import React, { useEffect, useCallback, useRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
@@ -22,8 +23,8 @@ const QUANTITY = 25
 
 /**
  * createParticles
- * @param object mouse
- * @return array
+ * @param {object} mouse
+ * @return {array}
  */
 const createParticles = (mouse) => {
   const particles = []
@@ -49,10 +50,13 @@ const createParticles = (mouse) => {
 
 /**
  * loop
- * @param ctx
+ * @param {array} particles
+ * @param {object} mouse
+ * @param {bool} transparent is whether the background is transparent
+ * @param {object} ctx
  * @return void
  */
-const loop = (particles, mouse) => (ctx) => {
+const loop = (particles, mouse, transparent = false) => (ctx) => {
   let { x, y, clientX, clientY, screenX, screenY, isDown } = mouse
   if (!clientX || !clientY) {
     x = window.innerWidth - SCREEN_WIDTH * 0.5
@@ -69,9 +73,14 @@ const loop = (particles, mouse) => (ctx) => {
   }
 
   RADIUS_SCALE = Math.min(RADIUS_SCALE, RADIUS_SCALE_MAX)
-
-  ctx.fillStyle = 'rgba(0,0,0,0.05)'
-  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+  if (!transparent) {
+    // ctx.globalCompositeOperation = 'exclusion'
+    ctx.fillStyle = 'rgba(0,0,0,0.05)'
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    // ctx.globalCompositeOperation = 'overlay'
+  } else {
+    // ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+  }
 
   for (let i = 0, len = particles.length; i < len; i++) {
     var particle = particles[i]
@@ -127,7 +136,6 @@ const loop = (particles, mouse) => (ctx) => {
     )
     ctx.fill()
   }
-  console.log('ctx', ctx)
 }
 
 const SpinningLoader = (props) => {
@@ -204,6 +212,20 @@ const SpinningLoader = (props) => {
 
   const canvasRef = useCanvas(loop(particles, mouse))
 
+  // useEffect(() => {
+  //   const ctx = canvasRef.current.getContext('2d')
+  //   const interval = setInterval(() => {
+  //     console.log('Clearing the canvas')
+  //     // Update the blend mode
+  //     // @see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+  //     // ctx.globalCompositeOperation = 'source-over'
+  //     // ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+  //     ctx.fillStyle = 'rgba(255,255,255,0.05)'
+  //     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+  //   }, 1000)
+  //   return () => clearInterval(interval)
+  // })
+
   return (
     <Tag
       className={`${styles.spinning_loader} ${
@@ -211,7 +233,14 @@ const SpinningLoader = (props) => {
       } ${className}`}
       ref={container}
     >
-      <canvas style={{ width: '100vw', height: '100vh' }} ref={canvasRef} />
+      <canvas
+        style={{
+          backgroundColor: 'transparent',
+          width: '100vw',
+          height: '100vh',
+        }}
+        ref={canvasRef}
+      />
     </Tag>
   )
 }
@@ -225,7 +254,7 @@ SpinningLoader.propTypes = {
 
 SpinningLoader.defaultProps = {
   tagName: 'div',
-  className: 'absolute z-40 top-0 bg-black w-screen h-screen',
+  className: 'absolute z-40 top-0 bg-black w-screen h-screen ', // blend-hard-light
   variant: 'default',
   children: '',
 }

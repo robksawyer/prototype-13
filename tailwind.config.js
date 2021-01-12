@@ -324,5 +324,7 @@ module.exports = {
     borderColor: ['responsive', 'focus', 'hover', 'active'],
     willChange: ['responsive'],
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-blend-mode')(), // no options to configure],
+  ],
 }
