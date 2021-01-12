@@ -26,9 +26,9 @@ export default function Home() {
       </Head>
       <HamburgerMenu />
       <SpinningLoader />
-      <main className={`${styles.main} flex flex-grow flex-col`}>
+      {/* <main className={`${styles.main} flex flex-grow flex-col`}>
         <MainScene />
-      </main>
+      </main> */}
 
       <footer
         className={`${styles.footer} w-full h-50 bg-black text-white px-40 flex align-center items-center justify-center uppercase`}
