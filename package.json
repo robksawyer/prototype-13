@@ -31,7 +31,7 @@
     "react-three-fiber": "^5.3.10",
     "react-use-gesture": "^8.0.0",
     "tailwindcss": "^2.0.2",
-    "three": "^0.123.0",
+    "three": "^0.125.0",
     "use-error-boundary": "^2.0.4",
     "use-mobile-detect-hook": "^1.0.3",
     "use-tweaks": "^0.1.0"
