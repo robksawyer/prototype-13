@@ -21,7 +21,7 @@
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",
     "gsap": "./gsap-bonus.tgz",
-    "next": "^10.0.4",
+    "next": "^11.1.1",
     "postcss": "^8.2.1",
     "postprocessing": "^6.17.4",
     "react": "^17.0.1",
