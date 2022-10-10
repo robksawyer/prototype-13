@@ -3,15 +3,8 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import styles from '../styles/Home.module.css'
 
-const MainScene = dynamic(() => import('../components/MainScene'), {
-  ssr: false,
-})
 import HamburgerMenu from '../components/HamburgerMenu'
 const SpinningLoader = dynamic(() => import('../components/SpinningLoader'), {
-  ssr: false,
-})
-import WaveText from '../components/WaveText'
-const CursorCircle = dynamic(() => import('../components/CursorCircle'), {
   ssr: false,
 })
 
@@ -26,9 +19,6 @@ export default function Home() {
       </Head>
       <HamburgerMenu />
       <SpinningLoader />
-      {/* <main className={`${styles.main} flex flex-grow flex-col`}>
-        <MainScene />
-      </main> */}
 
       <footer
         className={`${styles.footer} w-full h-50 bg-black text-white px-40 flex align-center items-center justify-center uppercase`}

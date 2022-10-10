@@ -20,7 +20,7 @@
     "drei": "^2.2.12",
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",
-    "gsap": "./gsap-bonus.tgz",
+    "gsap": "^3.11.3",
     "next": "^10.0.4",
     "postcss": "^8.2.1",
     "postprocessing": "^6.17.4",

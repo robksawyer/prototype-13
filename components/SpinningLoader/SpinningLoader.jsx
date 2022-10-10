@@ -138,13 +138,18 @@ const loop = (particles, mouse, transparent = false) => (ctx) => {
   }
 }
 
-const SpinningLoader = (props) => {
-  const { tagName: Tag, className, variant, children } = props
+const SpinningLoader = ({
+  tagName: Tag,
+  className,
+  variant,
+  enterDelay = 100,
+  leaveDelay = 100,
+}) => {
   const container = useRef()
 
   const mouse = useMouse(container, {
-    enterDelay: 100,
-    leaveDelay: 100,
+    enterDelay,
+    leaveDelay,
   })
 
   // Event handler utilizing useCallback ...
