@@ -22,7 +22,7 @@
     "glslify-loader": "^2.0.0",
     "gsap": "^3.11.3",
     "next": "^10.0.4",
-    "postcss": "^8.2.1",
+    "postcss": "^8.2.13",
     "postprocessing": "^6.17.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
